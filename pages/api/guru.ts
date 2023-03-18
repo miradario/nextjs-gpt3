@@ -1,9 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Configuration, OpenAIApi } from "openai";
+//dotenv
+require("dotenv").config();
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -36,4 +38,5 @@ export default async function handler(
   const quote = completion.data.choices[0].text;
 
   res.status(200).json({ quote });
+  //error
 }
