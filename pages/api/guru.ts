@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { Configuration, OpenAIApi } from 'openai'
+import type { NextApiRequest, NextApiResponse } from "next";
+import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: "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",
 });
 
 const openai = new OpenAIApi(configuration);
@@ -24,9 +24,9 @@ export default async function handler(
 
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `Create a cringy motivational quote based on the following topic.\n
+    prompt: `Answer as if you were Sri Sri Ravi Shankar.\n
     Topic: ${prompt}\n
-    Cringy motivational quote:`,
+    Gurudev quote:`,
     max_tokens: 500,
     temperature: 1,
     presence_penalty: 0,
