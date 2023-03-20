@@ -16,6 +16,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const prompt = req.query.prompt;
+  const topic = req.query.topic;
 
   if (!prompt) {
     return res.status(400).json({ error: "Prompt missing" });
@@ -28,7 +29,8 @@ export default async function handler(
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `Answer as if you were Sri Sri Ravi Shankar.\n
-    Topic: ${prompt}\n
+    Topic: ${topic}\n
+    Prompt: ${prompt}\n
     Gurudev quote:`,
     max_tokens: 500,
     temperature: 1,

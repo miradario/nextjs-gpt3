@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
-import mainImage from '@/assets/images/guru.png'
+import mainImage from '@/assets/images/guru2.png'
+
 import { Form, Button, Spinner } from 'react-bootstrap'
 import { FormEvent, useState } from 'react'
 
@@ -15,6 +16,8 @@ export default function Home() {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const prompt = formData.get("prompt")?.toString().trim();
+    const topic = formData.get("topic")?.toString().trim() || '{}';
+
 
     if (prompt) {
       try {
@@ -22,7 +25,7 @@ export default function Home() {
         setQuoteLoadingError(false);
         setQuoteLoading(true);
 
-        const response = await fetch("/api/guru?prompt=" + encodeURIComponent(prompt));
+        const response = await fetch("/api/guru?prompt=" + encodeURIComponent(prompt) +  "&topic=" + encodeURIComponent(topic)); 
         const body = await response.json();
         setQuote(body.quote);
       } catch (error) {
@@ -42,22 +45,31 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+     
+<video autoPlay muted loop className={styles.video}>         
+          <source src='./assets/video/onlyguru.mp4' type="video/mp4"/>       
+      </video>
+
       <main className={styles.main}>
-       <h1>Guru JGD</h1>
-       <h2>by Gurudevelopers.dev</h2>
-       <div>
-        Enter a question and Guru Sri sri Ravi Shankar will answer it.
-       </div>
-       <div className={styles.mainImageContainer}>
-          <Image src={mainImage} fill
-          alt='Guru Sri Sri Ravi Shankar'
-          priority
-          
-          className={styles.mainImage}
-          />
-        </div>
+      
+       <Image src={mainImage} alt='Guru' width={100} height={30} />
+       
+      
         <Form onSubmit={handleSubmit} className={styles.inputForm}>
+          <h1 className='mb-3'>Ask GurudevAI</h1>
           <Form.Group className='mb-3' controlId='prompt-input'>
+            
+            {/* select a topic */}
+            <Form.Label>Whats topic do you want to talk...</Form.Label>
+            <Form.Control as='select' name='topic'>
+              <option value=''>Select a topic</option>
+              <option value='health'>Health</option>
+              <option value='Relantionship'>Relantionship</option>
+              <option value='Money'>Money</option>
+              <option value='About the guru'>About me</option>
+              <option value=''>Miscellaneous</option>
+            </Form.Control>
+            <br />
             <Form.Label>Enter a question to the guru...</Form.Label>
             <Form.Control
               name='prompt'
