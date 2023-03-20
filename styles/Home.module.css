@@ -47,3 +47,11 @@
 .inputForm {
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .main {
+    left: 0%;
+    width: 100%;
+    height: auto;
+  }
+}
