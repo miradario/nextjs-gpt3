@@ -60,12 +60,13 @@ export default function Home() {
           <Form.Group className='mb-3' controlId='prompt-input'>
             
             {/* select a topic */}
-            <Form.Label>Whats topic do you want to talk...</Form.Label>
+            <Form.Label>What topic do you want to talk about?</Form.Label>
             <Form.Control as='select' name='topic'>
               <option value=''>Select a topic</option>
               <option value='health'>Health</option>
               <option value='Relantionship'>Relantionship</option>
               <option value='Money'>Money</option>
+              <option value='Money'>Work</option>
               <option value='About the guru'>About me</option>
               <option value=''>Miscellaneous</option>
             </Form.Control>
