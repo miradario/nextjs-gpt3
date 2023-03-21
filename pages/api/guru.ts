@@ -40,6 +40,13 @@ export default async function handler(
 
   const quote = completion.data.choices[0].text;
 
-  res.status(200).json({ quote });
+  const img = await openai.createImage({
+    prompt: "meditatio love " + prompt,
+    n: 2,
+    size: "512x512",
+  });
+
+  const image_url = img.data.data[0].url;
+  res.status(200).json({ quote, image_url });
   //error
 }

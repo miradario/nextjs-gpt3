@@ -2,12 +2,12 @@
 
 .main {
   visibility: visible;
-  height: 80%;
+  height: 50%;
   left: 25%;
   position: absolute;
   top: 10%;
   width: 100%;
-  position: absolute;
+
   flex-direction: column;
   justify-content: center;
   margin-top: 10rem;
@@ -19,8 +19,18 @@
   background-color: #d6d9dc;
   border-radius: 40px;
   box-shadow: 0 3px 8px rgb(0 0 0 / 24%);
-  opacity: 0.8;
+  opacity: 0.9;
   text-align-last: center;
+}
+
+.quote {
+  background-color: #eeefeff5;
+  border-radius: 20px;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 24%);
+  opacity: 1;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 2rem;
 }
 
 .mainImageContainer {
