@@ -58,7 +58,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
      
-<video autoPlay muted loop className={styles.video}>         
+      <video autoPlay muted loop className={styles.video}>         
           <source src='./assets/video/onlyguru.mp4' type="video/mp4"/>       
       </video>
 
@@ -72,9 +72,9 @@ export default function Home() {
       
     }}
 >
-      
-       <Image src={mainImage} alt='Guru' width={100} height={30} />
-       
+      <a href='https://gurudevelopers.dev/'>
+       <Image src={mainImage} alt='Guru' width={200} height={60} />
+       </a>
        {!quote
           ? (
         <Form onSubmit={handleSubmit} className={styles.inputForm}>
@@ -111,18 +111,24 @@ export default function Home() {
         {/* image  */}
        
         
-        {quote ?  
+        {quote &&  
         <div className={styles.quote}>
           <h5>{quote}</h5>
         
-          <Button onClick={handleAgain} className='mb-3' disabled={quoteLoading}>
-            Ask Again
-          </Button>  
           </div>
+      }
         
-        : null}
 
       </main>
-    </>
-  )
+       {quote ?  
+      <Button  onClick={handleAgain} className={styles.ask} disabled={quoteLoading}>
+            Ask Again
+          </Button>  
+          : null
+        }
+          
+   
+  
+   </>
+)
 }

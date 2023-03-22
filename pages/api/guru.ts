@@ -41,7 +41,7 @@ export default async function handler(
   const quote = completion.data.choices[0].text;
 
   const img = await openai.createImage({
-    prompt: "meditatio love " + prompt,
+    prompt: "Digital art landscape with meditation love " + prompt,
     n: 2,
     size: "512x512",
   });
