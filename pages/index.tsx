@@ -100,6 +100,7 @@ export default function Home() {
               maxLength={100}
             />
           </Form.Group>
+           <br />
           <Button type='submit' className='mb-3' disabled={quoteLoading}>
             Ask Gurudev
           </Button>
