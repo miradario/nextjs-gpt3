@@ -18,6 +18,15 @@ export default function Home() {
     setImage("");
   }
 
+  /* function speak(){
+    let utterance = new SpeechSynthesisUtterance(quote);
+    let voicesArray = speechSynthesis.getVoices();
+    utterance.pitch = 2; 
+    utterance.rate = 0.7;
+    utterance.voice = voicesArray[2];
+    speechSynthesis.speak(utterance);
+  }  */
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
@@ -26,7 +35,7 @@ export default function Home() {
     const prompt = formData.get("prompt")?.toString().trim().replace(/[?%!]/g, '');
 
     
-    const topic = formData.get("topic")?.toString().trim() || '{}';
+    //const topic = formData.get("topic")?.toString().trim() || '{}';
 
 
     if (prompt) {
@@ -35,7 +44,7 @@ export default function Home() {
         setQuoteLoadingError(false);
         setQuoteLoading(true);
 
-        const response = await fetch("/api/guru?prompt=" + encodeURIComponent(prompt) +  "&topic=" + encodeURIComponent(topic)); 
+        const response = await fetch("/api/guru?prompt=" + encodeURIComponent(prompt)); // +  "&topic=" + encodeURIComponent(topic)); 
         const body = await response.json();
         console.log (body);
         setQuote(body.quote);
@@ -78,11 +87,11 @@ export default function Home() {
        {!quote
           ? (
         <Form onSubmit={handleSubmit} className={styles.inputForm}>
-          <h1 className='mb-3'> GuruGPT  </h1>
+          
           <Form.Group className='mb-3' controlId='prompt-input'>
             
             {/* select a topic */}
-            <Form.Label>What topic do you want to talk about?(opcional)</Form.Label>
+           {/*  <Form.Label>What topic do you want to talk about?(opcional)</Form.Label>
             <Form.Control as='select' name='topic'>
               <option value=''>Select a topic</option>
               <option value='health'>Health</option>
@@ -91,9 +100,9 @@ export default function Home() {
               <option value='Money'>Work</option>
               <option value='About the guru'>About the Guru</option>
               <option value=''>Miscellaneous</option>
-            </Form.Control>
+            </Form.Control> */}
             <br />
-            <Form.Label>Enter a question to the guru...(english or spanish)</Form.Label>
+            <Form.Label>Enter a question to the guru...(has una pregunta en español o inglés)</Form.Label>
             <Form.Control
               name='prompt'
               placeholder='e.g. How to live my life better? o Como vivir mejor mi vida?'
@@ -121,15 +130,16 @@ export default function Home() {
         
 
       </main>
-       {quote ?  
-      <Button  onClick={handleAgain} className={styles.ask} disabled={quoteLoading}>
+      {quote && 
+       <div className={styles.quote}>
+          <Button  onClick={handleAgain} className={styles.ask} disabled={quoteLoading}>
             Ask Again
           </Button>  
-          : null
-        }
+          {/* <Button onClick={speak}>Speak </Button> */}
+        
+        </div>
+      }
           
-   
-  
    </>
 )
 }

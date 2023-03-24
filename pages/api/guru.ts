@@ -29,7 +29,6 @@ export default async function handler(
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `Answer as if you were Sri Sri Ravi Shankar.\n
-    Topic: ${topic}\n
     Prompt: ${prompt}\n
     Gurudev quote:`,
     max_tokens: 500,
