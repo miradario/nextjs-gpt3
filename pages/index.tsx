@@ -14,11 +14,11 @@ export default function Home() {
   const [quote, setQuote] = useState("");
   const [quoteLoading, setQuoteLoading] = useState(false);
   const [quoteLoadingError, setQuoteLoadingError] = useState(false);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(0);
 
   function handleAgain() {
     setQuote("");
-    setImage("");
+    setImage( "");
   }
 
   /* function speak(){
@@ -36,7 +36,7 @@ export default function Home() {
     
     // replace ?%! with empty string from prompt
     const prompt = formData.get("prompt")?.toString().trim().replace(/[?%!]/g, '');
-
+    
     
     //const topic = formData.get("topic")?.toString().trim() || '{}';
 
@@ -51,7 +51,7 @@ export default function Home() {
         const body = await response.json();
         console.log (body);
         setQuote(body.quote);
-        setImage (body.image_url)
+        setImage( Math.floor(Math.random() * 5) + 1);
       } catch (error) {
         console.error(error);
         setQuoteLoadingError(true);
@@ -73,9 +73,10 @@ export default function Home() {
       <video autoPlay muted loop className={styles.video}>         
           <source src='./assets/video/onlyguru.mp4' type="video/mp4"/>       
       </video>
-
+    
+      
       <main className={styles.main} style={{
-      backgroundImage: `url(./back4.jpg)`,
+      backgroundImage: `url(./back${image}.jpg)`,
       width: '100%',
       height: '60%',
       backgroundPosition: 'center',
