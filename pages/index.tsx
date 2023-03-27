@@ -2,6 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import mainImage from '@/assets/images/guru2.png'
+import back1 from '@/assets/images/background/back1.jpg'
+import back2 from '@/assets/images/background/back2.jpg'
+
 
 import { Form, Button, Spinner } from 'react-bootstrap'
 import { FormEvent, useState } from 'react'
@@ -72,7 +75,7 @@ export default function Home() {
       </video>
 
       <main className={styles.main} style={{
-      backgroundImage: `url(${image})`,
+      backgroundImage: `url(./back4.jpg)`,
       width: '100%',
       height: '60%',
       backgroundPosition: 'center',
