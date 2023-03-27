@@ -18,7 +18,7 @@ export default function Home() {
 
   function handleAgain() {
     setQuote("");
-    setImage( "");
+    setImage(0);
   }
 
   /* function speak(){
