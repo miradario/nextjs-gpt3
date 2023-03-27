@@ -26,26 +26,35 @@ export default async function handler(
     return res.status(400).json({ error: "Prompt too long" });
   }
 
-  const completion = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: `Answer as if you were Sri Sri Ravi Shankar.\n
+  try {
+    const completion = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: `Answer as if you were Sri Sri Ravi Shankar.\n
     Prompt: ${prompt}\n
     Gurudev quote:`,
-    max_tokens: 500,
-    temperature: 1,
-    presence_penalty: 0,
-    frequency_penalty: 0,
-  });
+      max_tokens: 500,
+      temperature: 1,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+    });
+    const quote = completion.data.choices[0].text;
 
-  const quote = completion.data.choices[0].text;
+    res.status(200).json({ quote });
 
-  const img = await openai.createImage({
-    prompt: "Digital art landscape with meditation love " + prompt,
-    n: 2,
-    size: "512x512",
-  });
+    /*  const quote = completion.data.choices[0].text;
 
-  const image_url = img.data.data[0].url;
-  res.status(200).json({ quote, image_url });
-  //error
+    const img = await openai.createImage({
+      prompt: "Digital art landscape with meditation love " + prompt,
+      n: 2,
+      size: "512x512",
+    });
+
+    const image_url = img.data.data[0].url;
+    res.status(200).json({ quote, image_url }); 
+    //error
+    */
+  } catch (error) {
+    console.error("error:", error);
+    res.status(500).json({ error: "Server error" });
+  }
 }
