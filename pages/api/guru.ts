@@ -32,7 +32,7 @@ export default async function handler(
       prompt: `Answer as if you were Sri Sri Ravi Shankar.\n
     Prompt: ${prompt}\n
     Gurudev quote:`,
-      max_tokens: 500,
+      max_tokens: 300,
       temperature: 1,
       presence_penalty: 0,
       frequency_penalty: 0,
