@@ -54,7 +54,7 @@ export default async function handler(
     //error
     */
   } catch (error) {
-    console.error("error:", error);
+    console.log("Show error:", error);
     res.status(500).json({ error: "Server error" });
   }
 }
